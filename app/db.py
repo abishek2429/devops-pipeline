@@ -223,3 +223,4 @@ def check_db_health() -> bool:
         return cursor.fetchone() is not None
     except Exception:
         return False
+

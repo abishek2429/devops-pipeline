@@ -161,3 +161,4 @@ function initHealthCheckPolling() {
     checkHealth();
     setInterval(checkHealth, 30000);
 }
+

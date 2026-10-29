@@ -1,0 +1,58 @@
+# Git & Version Control
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+
+# Local SQLite Databases & Volatile Data
+instance/
+data/
+*.db
+*.sqlite3
+*.db-journal
+
+# Python Bytecode & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Testing & Coverage Artifacts
+tests/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Code Quality & Linter Caches
+.ruff_cache/
+.mypy_cache/
+
+# Documentation & Development Assets
+docs/
+pyproject.toml
+requirements-dev.txt
+
+# Docker Configuration Files
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# IDE & Editor Directories
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -146,3 +146,4 @@ def test_challenge_stats_endpoint(client):
     assert "pending" in data
     assert "completion_rate" in data
     assert data["total"] == data["completed"] + data["pending"]
+

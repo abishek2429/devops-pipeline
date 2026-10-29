@@ -111,3 +111,4 @@ def toggle_challenge(challenge_id: int):
 def challenge_stats():
     """Retrieve current challenge completion statistics."""
     return jsonify(get_challenge_stats()), 200
+

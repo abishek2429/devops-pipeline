@@ -62,3 +62,4 @@ def test_404_json_error_for_api(client):
     data = response.get_json()
     assert "error" in data
     assert data["status_code"] == 404
+

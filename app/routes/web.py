@@ -32,3 +32,4 @@ def toggle_challenge_form(challenge_id: int):
     """Fallback route for standard HTML form toggling without JavaScript."""
     toggle_challenge_status(challenge_id)
     return redirect(url_for("web.dashboard"))
+
