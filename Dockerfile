@@ -69,3 +69,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
 
 # Production WSGI execution using Gunicorn with dynamic port binding
 CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-5000} --workers 2 --threads 2 --timeout 30 --access-logfile - --error-logfile - 'app:create_app()'"]
+
