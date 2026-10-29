@@ -1,0 +1,12 @@
+# DevOps Quest - Development & Testing Dependencies
+-r requirements.txt
+
+# Testing framework
+pytest==8.3.4
+
+# Pytest coverage plugin for test metrics and reporting
+pytest-cov==6.0.0
+
+# Extremely fast modern Python linter and formatter
+ruff==0.8.4
+
