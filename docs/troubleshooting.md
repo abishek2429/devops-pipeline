@@ -85,3 +85,4 @@ This guide covers common errors encountered during local development on Windows 
   2. Open your Web Service > **Settings** > scroll to **Deploy Hook**.
   3. Copy the URL (`https://api.render.com/deploy/srv-xxxx?key=yyyy`).
   4. In GitHub: Navigate to **Settings** > **Secrets and variables** > **Actions** > add or update `RENDER_DEPLOY_HOOK_URL`.
+

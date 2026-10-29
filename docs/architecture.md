@@ -110,3 +110,4 @@ flowchart LR
 - **Minimal Attack Surface**: Multi-stage Dockerfile discards build tools, compiling utilities, and pip caches in the final image (`python:3.13-slim-bookworm`).
 - **Aqua Trivy Policy**: Audits container layers and Python dependencies; fails build on unmitigated `CRITICAL` severity CVEs.
 - **Secret Hygiene**: Zero secrets stored in source control; pipeline uses `GITHUB_TOKEN` for GHCR and encrypted repository secrets for Render.
+
