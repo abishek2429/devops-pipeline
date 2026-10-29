@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-header">
+        <div>
+            <h1 class="hero-title">Challenge Tracker</h1>
+            <p class="hero-subtitle">Master modern containerization, automated testing, and CI/CD pipelines step by step.</p>
+        </div>
+        <div class="hero-action">
+            <a href="{{ url_for('api.list_challenges') }}" class="btn btn-outline" target="_blank" rel="noopener">
+                View Raw JSON API &rarr;
+            </a>
+        </div>
+    </div>
+
+    <!-- Progress Overview Panel -->
+    <div class="progress-card">
+        <div class="progress-header">
+            <div class="progress-title-wrap">
+                <span class="progress-label">Overall Completion</span>
+                <span class="progress-count" id="progress-summary-text">
+                    <strong>{{ stats.completed }}</strong> of <strong>{{ stats.total }}</strong> Challenges Completed
+                </span>
+            </div>
+            <div class="progress-percentage" id="progress-percentage-display">{{ stats.completion_rate }}%</div>
+        </div>
+        <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progress-bar-fill" style="width: {{ stats.completion_rate }}%;" role="progressbar" aria-valuenow="{{ stats.completion_rate }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <span class="metric-value" id="metric-total">{{ stats.total }}</span>
+                <span class="metric-label">Total Challenges</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value text-success" id="metric-completed">{{ stats.completed }}</span>
+                <span class="metric-label">Completed</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value text-warning" id="metric-pending">{{ stats.pending }}</span>
+                <span class="metric-label">Pending</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value text-accent" id="metric-rate">{{ stats.completion_rate }}%</span>
+                <span class="metric-label">Success Rate</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filter Toolbar -->
+<section class="challenges-section">
+    <div class="toolbar">
+        <div class="filter-group">
+            <span class="filter-label">Filter by Difficulty:</span>
+            <div class="filter-tabs">
+                <a href="{{ url_for('web.dashboard') }}" class="filter-tab {% if current_difficulty == 'all' %}active{% endif %}">All</a>
+                <a href="{{ url_for('web.dashboard', difficulty='Beginner') }}" class="filter-tab {% if current_difficulty == 'Beginner' %}active{% endif %}">Beginner</a>
+                <a href="{{ url_for('web.dashboard', difficulty='Intermediate') }}" class="filter-tab {% if current_difficulty == 'Intermediate' %}active{% endif %}">Intermediate</a>
+                <a href="{{ url_for('web.dashboard', difficulty='Advanced') }}" class="filter-tab {% if current_difficulty == 'Advanced' %}active{% endif %}">Advanced</a>
+            </div>
+        </div>
+        <div class="quick-status-filter">
+            <label class="checkbox-container">
+                <input type="checkbox" id="filter-hide-completed">
+                <span class="checkbox-label">Hide Completed</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Challenges Grid -->
+    <div class="challenges-grid" id="challenges-grid">
+        {% if challenges %}
+            {% for item in challenges %}
+            <article class="challenge-card {% if item.is_completed %}is-completed{% endif %}" id="challenge-card-{{ item.id }}" data-completed="{{ item.is_completed }}" data-difficulty="{{ item.difficulty }}">
+                <div class="card-top">
+                    <span class="category-badge">{{ item.category }}</span>
+                    <span class="difficulty-badge difficulty-{{ item.difficulty|lower }}">{{ item.difficulty }}</span>
+                </div>
+                <h3 class="card-title">{{ item.title }}</h3>
+                <p class="card-desc">{{ item.description }}</p>
+                <div class="card-footer">
+                    <form action="{{ url_for('web.toggle_challenge_form', challenge_id=item.id) }}" method="POST" class="toggle-form">
+                        <label class="toggle-switch">
+                            <input type="checkbox"
+                                   class="challenge-checkbox"
+                                   data-id="{{ item.id }}"
+                                   {% if item.is_completed %}checked{% endif %}
+                                   aria-label="Mark {{ item.title }} as completed">
+                            <span class="toggle-slider"></span>
+                            <span class="toggle-text" id="toggle-text-{{ item.id }}">
+                                {% if item.is_completed %}Completed{% else %}Mark as Done{% endif %}
+                            </span>
+                        </label>
+                        <noscript>
+                            <button type="submit" class="btn btn-sm">Toggle</button>
+                        </noscript>
+                    </form>
+                </div>
+            </article>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">
+                <span class="empty-icon">📂</span>
+                <h3>No challenges found</h3>
+                <p>No challenges match your selected difficulty filter. Try selecting "All".</p>
+                <a href="{{ url_for('web.dashboard') }}" class="btn btn-outline">Clear Filters</a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

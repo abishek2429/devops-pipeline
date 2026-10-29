@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}500 - Internal Server Error | DevOps Quest{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-code text-danger">500</div>
+    <h1 class="error-title">Internal System Error</h1>
+    <p class="error-desc">Something went wrong while processing your request. The incident has been logged.</p>
+    <div class="error-actions">
+        <a href="{{ url_for('web.dashboard') }}" class="btn btn-primary">&larr; Return to Dashboard</a>
+        <a href="{{ url_for('health_check') }}" class="btn btn-outline" target="_blank">View Diagnostics (/health)</a>
+    </div>
+</div>
+{% endblock %}

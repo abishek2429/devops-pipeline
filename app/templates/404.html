@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found | DevOps Quest{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-code">404</div>
+    <h1 class="error-title">Quest Not Found</h1>
+    <p class="error-desc">The page or challenge you are looking for does not exist or has been moved.</p>
+    <div class="error-actions">
+        <a href="{{ url_for('web.dashboard') }}" class="btn btn-primary">&larr; Return to Dashboard</a>
+        <a href="{{ url_for('health_check') }}" class="btn btn-outline" target="_blank">Check Service Health</a>
+    </div>
+</div>
+{% endblock %}

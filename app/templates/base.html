@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DevOps Quest - Mini Coding-Challenge Tracker and DevSecOps Reference Application">
+    <title>{% block title %}DevOps Quest | Challenge Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-container">
+            <div class="brand">
+                <a href="{{ url_for('web.dashboard') }}" class="brand-link">
+                    <span class="brand-icon">⚡</span>
+                    <div class="brand-text">
+                        <span class="brand-title">DevOps Quest</span>
+                        <span class="brand-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="{{ url_for('web.dashboard') }}" class="nav-item active">Dashboard</a>
+                <a href="{{ url_for('api.list_challenges') }}" class="nav-item" target="_blank" rel="noopener">API</a>
+                <a href="{{ url_for('health_check') }}" class="nav-item" target="_blank" rel="noopener">Health</a>
+                <div class="system-status" id="system-status-indicator" title="Live Health Endpoint Status">
+                    <span class="status-dot"></span>
+                    <span class="status-label">Online</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-container">
+            <div class="footer-info">
+                <p><strong>DevOps Quest</strong> — Real-world DevSecOps &amp; CI/CD Portfolio Project</p>
+                <p class="text-muted">Built with Python, Flask, Docker, Ruff, Pytest, GitHub Actions, Trivy, GHCR &amp; Render</p>
+            </div>
+            <div class="footer-badges">
+                <span class="pipeline-tag tag-ci">CI: GitHub Actions</span>
+                <span class="pipeline-tag tag-sec">Security: Trivy</span>
+                <span class="pipeline-tag tag-reg">Registry: GHCR</span>
+                <span class="pipeline-tag tag-cd">CD: Render</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
